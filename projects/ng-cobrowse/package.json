@@ -1,0 +1,21 @@
+{
+  "name": "@nilsthomann/ng-cobrowse",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nilsthomann/ng-cobrowse"
+  },
+  "description": "A service library for integrate cobrowse.io in your angular project",
+  "author": "nils.thomann@exanic.ch",
+  "contributors": [
+    "Nils Thomann <nils.thomann@exanic.ch>"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}
