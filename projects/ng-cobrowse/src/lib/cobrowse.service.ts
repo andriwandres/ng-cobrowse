@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { CobrowseIO, CobrowseIOCustomerData } from './cobrowse-io';
 
@@ -11,7 +11,7 @@ export class CobrowseService {
   private script = undefined;
 
   constructor(
-    @Inject(Document) private readonly documentRef: Document,
+    @Inject(DOCUMENT) private readonly documentRef: any,
     @Inject(PLATFORM_ID) private readonly platformId: any,
     @Inject('cobrowseIoLicenseKey') cobrowseIoLicenseKey: string
   ) {
