@@ -1,8 +1,10 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { CobrowseIO, CobrowseIOCustomerData } from './cobrowse-io';
+import { CobrowseIO, CobrowseIOCustomData } from './cobrowse-io';
 
 declare var CobrowseIO: CobrowseIO;
+
+export const COBROWSE_IO_LICENSE_KEY = 'cobrowseIoLicenseKey';
 
 @Injectable({
   providedIn: 'root',
@@ -13,36 +15,34 @@ export class CobrowseService {
   constructor(
     @Inject(DOCUMENT) private readonly documentRef: any,
     @Inject(PLATFORM_ID) private readonly platformId: any,
-    @Inject('cobrowseIoLicenseKey') cobrowseIoLicenseKey: string
+    @Inject(COBROWSE_IO_LICENSE_KEY) cobrowseIoLicenseKey: string
   ) {
     if (isPlatformBrowser(this.platformId)) {
-      this.addScriptToDom();
-
-      if (cobrowseIoLicenseKey) {
-        CobrowseIO.license = cobrowseIoLicenseKey;
-      } else {
-        throw Error('Please provide a licensekey to use cobrowse.io');
-      }
+      this.addScriptToDom().then(() => {
+        if (cobrowseIoLicenseKey) {
+          CobrowseIO.license = cobrowseIoLicenseKey;
+        } else {
+          throw Error('Please provide a licensekey to use cobrowse.io');
+        }
+      });
     }
   }
 
-  start(customerData?: CobrowseIOCustomerData) {
+  start(customData?: CobrowseIOCustomData) {
     if (isPlatformBrowser(this.platformId)) {
-      CobrowseIO.customerData = customerData;
-
       CobrowseIO.client().then(() => {
+        CobrowseIO.customData = customData;
         CobrowseIO.start();
       });
     }
   }
 
-  startWithCode(customerData?: CobrowseIOCustomerData) {
+  startWithCode(customData?: CobrowseIOCustomData) {
     return new Promise<string>((resolve, reject) => {
       if (isPlatformBrowser(this.platformId)) {
-        CobrowseIO.customerData = customerData;
-
         CobrowseIO.client().then(() => {
           CobrowseIO.createSessionCode().then((code: string) => {
+            CobrowseIO.customData = customData;
             CobrowseIO.start();
             resolve(code);
           });
@@ -53,9 +53,15 @@ export class CobrowseService {
     });
   }
 
+  stop() {
+    if (isPlatformBrowser(this.platformId)) {
+      return CobrowseIO.stop();
+    }
+  }
+
   private addScriptToDom() {
     const promise = new Promise<CobrowseIO>((resolve) => {
-      CobrowseIO = {
+      window['CobrowseIO'] = {
         client: () => {
           if (!this.script) {
             this.script = this.documentRef.createElement('script');
@@ -73,5 +79,6 @@ export class CobrowseService {
         },
       };
     });
+    return promise;
   }
 }

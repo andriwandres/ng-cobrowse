@@ -1,24 +1,50 @@
-# NgCobrowse
+# Cobrowse Service Library for Angular
 
+A service library for integrate cobrowse.io in your angular project.
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name --project ng-cobrowse` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-cobrowse`.
-> Note: Don't forget to add `--project ng-cobrowse` or else it will be added to the default project in your `angular.json` file. 
+After installing it you need to provide your licensekey in app.module.ts 
 
-## Build
+``` typescript
+    providers: [
+        ...
+        {provide: COBROWSE_IO_LICENSE_KEY,  useValue: '[YOUR_LICENSE_KEY]'}
+    ],
+```
 
-Run `ng build ng-cobrowse` to build the project. The build artifacts will be stored in the `dist/` directory.
+inject the cobrowseService in your controller and start a session
 
-## Publishing
+``` typescript
+constructor(
+        ...
+        private cobrowseService: CobrowseService,
+    ) {
+        ...
+         cobrowseService.start();
+     }
+```
 
-After building your library with `ng build ng-cobrowse`, go to the dist folder `cd dist/ng-cobrowse` and run `npm publish`.
+### Installing
 
-## Running unit tests
+In your Angular project run
 
-Run `ng test ng-cobrowse` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm i --save  @nilsthomann/ng-cobrowse
+```
 
-## Further help
+## Authors
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* **Nils Thomann** - *Initial work* - [Nils Thomann](https://github.com/nilsthomann)
+
+See also the list of [contributors](https://github.com/nilsthomann/ng-cobrowse/graphs/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License
+
+## Acknowledgments
+
+* Thanks to PurpleBooth for the [Readme Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) 
+

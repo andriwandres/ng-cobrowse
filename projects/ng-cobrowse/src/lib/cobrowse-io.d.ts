@@ -1,13 +1,14 @@
 export interface CobrowseIO {
   client: () => Promise<CobrowseIO>;
   start?: () => void;
+  stop?: () => Promise<CobrowseIO>;
   createSessionCode?: () => Promise<string>;
 
   license?: string;
-  customerData?: CobrowseIOCustomerData;
+  customData?: CobrowseIOCustomData;
 }
 
-export interface CobrowseIOCustomerData {
+export interface CobrowseIOCustomData {
   user_id?: string;
   user_name?: string;
   user_email?: string;
