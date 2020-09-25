@@ -1,6 +1,6 @@
 {
   "name": "@nilsthomann/ng-cobrowse",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "set-version": "npm version patch --no-git-tag-version && cd projects/ng-cobrowse && npm version patch --no-git-tag-version && cp CHANGELOG.md ../../CHANGELOG.md && cp README.md ../../README.md",
+    "publish": "ng build ng-cobrowse --prod && cd dist/ng-cobrowse && npm publish --access=public"
   },
   "private": true,
   "dependencies": {
