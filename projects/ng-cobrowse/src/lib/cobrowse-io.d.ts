@@ -5,6 +5,7 @@ export interface CobrowseIO {
   createSessionCode?: () => Promise<string>;
 
   license?: string;
+  api?: string;
   customData?: CobrowseIOCustomData;
 }
 

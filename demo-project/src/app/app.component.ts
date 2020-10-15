@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'demo-project';
 
   constructor(cobrowseService: CobrowseService) {
-    cobrowseService.startWithCode({
+    cobrowseService.start({
       device_name: 'Test Device',
       device_id: '42',
       user_email: 'test@test.com',

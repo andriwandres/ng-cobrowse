@@ -15,3 +15,8 @@
 # 1.0.0 (2020-09-18)
 
 * Initial publish of the cobrowse.io service library
+
+<a name="1.1.0"></a>
+# 1.1.0 (2020-10-15)
+
+* Added support for enterprise instance

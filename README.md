@@ -5,7 +5,19 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Getting Started
 
-After installing it you need to provide your licensekey in app.module.ts 
+The following steps must be done to activate Cobrowse in your angular project
+
+### Installing
+
+Run the following command to install the library
+
+```
+npm i --save  @nilsthomann/ng-cobrowse
+```
+
+### Setup
+
+After the installation you have to provide your license key in app.module.ts
 
 ``` typescript
     providers: [
@@ -26,12 +38,15 @@ constructor(
      }
 ```
 
-### Installing
+### Enterprise Instance
 
-In your Angular project run
+If you have your own enterprise instance, you have to provide your API URL in app.module.ts
 
-```
-npm i --save  @nilsthomann/ng-cobrowse
+``` typescript
+    providers: [
+        ...
+        {provide: COBROWSE_IO_API_URL,  useValue: '[YOUR_API_URL]'} // as example 'https://cobrowse.example.com'
+    ],
 ```
 
 ## Authors

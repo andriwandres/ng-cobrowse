@@ -1,10 +1,11 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { CobrowseIO, CobrowseIOCustomData } from './cobrowse-io';
 
 declare var CobrowseIO: CobrowseIO;
 
 export const COBROWSE_IO_LICENSE_KEY = 'cobrowseIoLicenseKey';
+export const COBROWSE_IO_API_URL = 'cobrowseIoApiUrl';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class CobrowseService {
   constructor(
     @Inject(DOCUMENT) private readonly documentRef: any,
     @Inject(PLATFORM_ID) private readonly platformId: any,
-    @Inject(COBROWSE_IO_LICENSE_KEY) cobrowseIoLicenseKey: string
+    @Inject(COBROWSE_IO_LICENSE_KEY) cobrowseIoLicenseKey: string,
+    @Optional() @Inject(COBROWSE_IO_API_URL) cobrowseIoApiUrl: string
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.addScriptToDom().then(() => {
@@ -23,6 +25,10 @@ export class CobrowseService {
           CobrowseIO.license = cobrowseIoLicenseKey;
         } else {
           throw Error('Please provide a licensekey to use cobrowse.io');
+        }
+
+        if (cobrowseIoApiUrl) {
+          CobrowseIO.api = cobrowseIoApiUrl;
         }
       });
     }
@@ -61,6 +67,7 @@ export class CobrowseService {
 
   private addScriptToDom() {
     const promise = new Promise<CobrowseIO>((resolve) => {
+      // tslint:disable-next-line: no-string-literal
       window['CobrowseIO'] = {
         client: () => {
           if (!this.script) {

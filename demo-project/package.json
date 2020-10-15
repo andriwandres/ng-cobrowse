@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
-    "@nilsthomann/ng-cobrowse": "^1.0.1",
+    "@nilsthomann/ng-cobrowse": "file:../dist/ng-cobrowse",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
