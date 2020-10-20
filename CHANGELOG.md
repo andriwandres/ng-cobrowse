@@ -1,3 +1,8 @@
+<a name="1.1.1"></a>
+# 1.1.1 (2020-10-20)
+
+* BUG: Starting Session before creating a SessionCode
+
 <a name="1.1.0"></a>
 # 1.1.0 (2020-10-15)
 

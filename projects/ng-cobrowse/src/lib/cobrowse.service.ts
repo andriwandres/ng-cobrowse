@@ -47,9 +47,9 @@ export class CobrowseService {
     return new Promise<string>((resolve, reject) => {
       if (isPlatformBrowser(this.platformId)) {
         CobrowseIO.client().then(() => {
+          CobrowseIO.start();
           CobrowseIO.createSessionCode().then((code: string) => {
             CobrowseIO.customData = customData;
-            CobrowseIO.start();
             resolve(code);
           });
         });
