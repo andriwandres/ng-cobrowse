@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+# 2.0.1 (2022-02-23)
+
+* Hotfix: Update to Angular 13
+
+<a name="2.0.0"></a>
+# 2.0.0 (2022-02-23)
+
+* Update to Angular 13
+
 <a name="1.1.1"></a>
 # 1.1.1 (2020-10-20)
 

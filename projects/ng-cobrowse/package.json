@@ -1,6 +1,6 @@
 {
   "name": "@nilsthomann/ng-cobrowse",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
     "Nils Thomann <nils.thomann@exanic.ch>"
   ],
   "peerDependencies": {
-    "@angular/common": "^9.1.12",
-    "@angular/core": "^9.1.12"
+    "@angular/common": "^13.2.3",
+    "@angular/core": "^13.2.3"
   },
   "dependencies": {
     "tslib": "^2.0.0"
