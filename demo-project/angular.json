@@ -21,9 +21,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",            
+            "tsConfig": "tsconfig.app.json",
             "preserveSymlinks": true,
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -31,9 +30,23 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "buildOptimizer": false,
+              "vendorChunk": true,
+              "serviceWorker": false
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -44,7 +57,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -62,14 +74,19 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "defaultConfiguration": "development",
           "options": {
             "browserTarget": "demo-project:build"
           },
           "configurations": {
+            "development": {
+              "browserTarget": "demo-project:build:development"
+            },
             "production": {
               "browserTarget": "demo-project:build:production"
             }
@@ -96,19 +113,6 @@
               "src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
